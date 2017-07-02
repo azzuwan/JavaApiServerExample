@@ -32,9 +32,7 @@ public class Article {
         this.body = body;
         this.published = published;
         this.agency = agency;
-    }
-    
-    
+    }     
 
     public String getUrl() {
         return url;
