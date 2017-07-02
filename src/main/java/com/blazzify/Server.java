@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blazzify.simpleapiserverexample;
+package com.blazzify;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -30,22 +30,9 @@ public class Server {
             res.type("application/json");
             String keyword = req.params(":keyword");
             MongoCursor<Document> all = articles.find(Filters.text(keyword)).iterator();
-            return json(all);
+            return Util.json(all);
         });
     }
 
-    public static String json(MongoCursor<Document> cursor) {        
-        boolean first = true;
-        String data = "[";
-        while (cursor.hasNext()) {
-            if(!first){
-                data += ",";
-            }
-            Document doc = cursor.next();            
-            data += doc.toJson();
-            first = false;
-        }
-        data += "]";        
-        return data;
-    }
+    
 }
