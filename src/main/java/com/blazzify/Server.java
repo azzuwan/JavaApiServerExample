@@ -15,7 +15,7 @@ public class Server {
     public static void main(String[] args) {
         ArticleService service = new ArticleService();
         get("/", (req, res) -> "Hello World");
-        get("/articles/:keywords", (req, res) -> {
+        get("/articles/keywords/:keywords", (req, res) -> {
             res.type("application/json");
             String keyword = req.params(":keywords");
             return  service.search(keyword);
