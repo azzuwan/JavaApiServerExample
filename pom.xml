@@ -44,9 +44,10 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.blazzify.simpleapiserverexample.Server</mainClass>
+                            <mainClass>com.blazzify.Server</mainClass>
                         </manifest>
                     </archive>
+                    <finalName>server</finalName>     
                 </configuration>
             </plugin>
             <plugin>
