@@ -1,8 +1,8 @@
 # JavaApiServerExample
 Spark + MongoDB example
 
-## Requirement
-Jdk 8 ++
+## Requirements
+JDK 8++
 
 ## Usage
 mvn compile && mvn package && java -jar ./target/server.jar
