@@ -5,34 +5,20 @@
  */
 package com.blazzify;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import org.bson.Document;
+import com.blazzify.services.ArticleService;
 import static spark.Spark.get;
-
 /**
  *
  * @author Azzuwan Aziz <azzuwan@gmail.com>
  */
 public class Server {
-
     public static void main(String[] args) {
-        String host = "mongodb://azzuwan:Reddoor74@aws-ap-southeast-1-portal.2.dblayer.com:15501/admin";
-        MongoClientURI uri = new MongoClientURI(host);
-        MongoDatabase db = new MongoClient(uri).getDatabase("news");
-        MongoCollection<Document> articles = db.getCollection("articles");
+        ArticleService service = new ArticleService();
         get("/", (req, res) -> "Hello World");
-        get("/articles/:keyword", (req, res) -> {
+        get("/articles/:keywords", (req, res) -> {
             res.type("application/json");
-            String keyword = req.params(":keyword");
-            MongoCursor<Document> all = articles.find(Filters.text(keyword)).iterator();
-            return Util.json(all);
+            String keyword = req.params(":keywords");
+            return  service.search(keyword);
         });
     }
-
-    
 }
